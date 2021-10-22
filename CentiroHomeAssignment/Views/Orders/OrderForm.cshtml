@@ -1,0 +1,63 @@
+﻿@model CentiroHomeAssignment.ViewModels.OrderViewModel
+
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+@if (Model.Id == 0)
+{
+    <h2>Lägg till order</h2>
+}
+
+else
+{
+    <h2>Redigera: @Model.OrderNumber</h2>
+}
+
+@using (Html.BeginForm("Save", "Orders"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductNumber)
+        @Html.TextBoxFor(m => m.ProductNumber, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Quantity)
+        @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductGroup)
+        @Html.TextBoxFor(m => m.ProductGroup, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustomerName)
+        @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustomerNumber)
+        @Html.TextBoxFor(m => m.CustomerNumber, new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.OrderNumber)
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

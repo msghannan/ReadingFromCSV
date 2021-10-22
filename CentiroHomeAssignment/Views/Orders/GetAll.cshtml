@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CentiroHomeAssignment.Models.Order>
+
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+
+<div class="jumbotron">
+    <div>
+        <div style=" position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left">
+            @Html.ActionLink("Skapa en ny order!", "NewOrder", "Orders")
+            <p>Nya ordrar sparas i databasen</p>
+        </div>
+
+        <div style=" position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left">
+            @Html.ActionLink("Insert orders from file", "InsertOrdersFromFile", "Orders")
+            <p>Hämtar alla ordrar i mappen App_Data till databasen!</p>
+        </div>
+    </div>
+</div>
+
+
+
+<table id="customerTable" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Order nummer</th>
+            <th>Order line nummer</th>
+            <th>Produkt nummer</th>
+            <th>Kvantite</th>
+            <th>Namn</th>
+            <th>Beskrivning</th>
+            <th>Pris</th>
+            <th>Produkt grupp</th>
+            <th>Datum</th>
+            <th>Kundens namn</th>
+            <th>Kundens tel nr</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var order in Model)
+        {
+        <tr>
+            <td>@Html.ActionLink(order.OrderNumber.ToString(), "Edit", "Orders", new { Id = order.Id, OrderNumber = order.OrderNumber }, null)</td>
+            <td>@order.OrderLineNumber</td>
+            <td>@order.ProductNumber</td>
+            <td>@order.Quantity</td>
+            <td>@order.Name</td>
+            <td>@order.Description</td>
+            <td>@order.Price</td>
+            <td>@order.ProductGroup</td>
+            <td>@order.OrderDate</td>
+            <td>@order.CustomerName</td>
+            <td>@order.CustomerNumber</td>
+            <td>@Html.ActionLink("Ta bort", "Delete", "Orders", new { Id = order.Id, OrderNumber = order.OrderNumber }, null)</td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+
